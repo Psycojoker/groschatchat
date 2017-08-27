@@ -29,7 +29,7 @@ async function main() {
             document.getElementById("groschatchat").style.backgroundImage = "url(../images/" + images[i] + ")"
         }).fadeIn()
 
-        await sleep(6000);
+        await sleep(4000);
     }
 }
 
