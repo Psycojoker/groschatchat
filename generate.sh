@@ -1,6 +1,7 @@
 set -eux
 
 rm -rf images/*
+touch images/empty
 
 echo "images = [" > js/images.js
 
