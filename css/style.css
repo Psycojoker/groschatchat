@@ -1,0 +1,19 @@
+html, body, #groschatchat {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-size: cover;
+    background-position: center center;
+    background-image: url(./../images/20170823_192853.jpg);
+}
+
+#groschatchat {
+    background-size: contain;
+    background-image: url(./../images/20170823_192853.jpg);
+    background-repeat: no-repeat;
+    background-position: center center;
+}
