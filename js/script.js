@@ -23,12 +23,18 @@ async function main() {
         return new Promise(r => setTimeout(r, ms));
     }
 
+    var chat = $(".chat");
+
     while (true) {
         for (i in shuffle(images)) {
-            $(".chat").fadeOut(function() {
+            chat.fadeOut(function() {
                 document.getElementById("tresgroschatchat").style.backgroundImage = "url(../images/" + images[i] + ")"
                 document.getElementById("groschatchat").style.backgroundImage = "url(../images/" + images[i] + ")"
-            }).fadeIn()
+
+                img = new Image();
+                img.onload = function() { chat.fadeIn()}
+                img.src = "../images/" + images[i];
+            })
 
             await sleep(4000);
         }
