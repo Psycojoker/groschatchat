@@ -4,9 +4,12 @@ async function main() {
     }
 
     for (i in images) {
-        document.body.style.backgroundImage = "url(../images/" + images[i].replace(".", "-background.") + ")"
-        document.getElementById("groschatchat").style.backgroundImage = "url(../images/" + images[i] + ")"
-        await sleep(4000);
+        $("#tresgroschatchat").fadeOut(function() {
+            document.getElementById("tresgroschatchat").style.backgroundImage = "url(../images/" + images[i].replace(".", "-background.") + ")"
+            document.getElementById("groschatchat").style.backgroundImage = "url(../images/" + images[i] + ")"
+        }).fadeIn()
+
+        await sleep(6000);
     }
 }
 

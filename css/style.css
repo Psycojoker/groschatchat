@@ -1,4 +1,4 @@
-html, body, #groschatchat {
+html, body, #tresgroschatchat, #groschatchat {
     height: 100%;
     width: 100%;
     margin: 0;
@@ -6,9 +6,14 @@ html, body, #groschatchat {
 }
 
 body {
+    background-color: black;
+}
+
+#tresgroschatchat {
     background-size: cover;
     background-position: center center;
     background-image: url(./../images/20170823_192853.jpg);
+    display: none;
 }
 
 #groschatchat {
