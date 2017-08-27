@@ -12,13 +12,16 @@ body {
 #tresgroschatchat {
     background-size: cover;
     background-position: center center;
-    background-image: url(./../images/20170823_192853.jpg);
     display: none;
+    filter: blur(10px);
 }
 
 #groschatchat {
+    position: absolute;
+    top: 0;
+    left: 0;
     background-size: contain;
-    background-image: url(./../images/20170823_192853.jpg);
     background-repeat: no-repeat;
     background-position: center center;
+    display: none;
 }

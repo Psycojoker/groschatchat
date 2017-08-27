@@ -4,8 +4,8 @@ async function main() {
     }
 
     for (i in images) {
-        $("#tresgroschatchat").fadeOut(function() {
-            document.getElementById("tresgroschatchat").style.backgroundImage = "url(../images/" + images[i].replace(".", "-background.") + ")"
+        $(".chat").fadeOut(function() {
+            document.getElementById("tresgroschatchat").style.backgroundImage = "url(../images/" + images[i] + ")"
             document.getElementById("groschatchat").style.backgroundImage = "url(../images/" + images[i] + ")"
         }).fadeIn()
 
