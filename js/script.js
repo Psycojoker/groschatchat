@@ -27,13 +27,15 @@ async function main() {
 
     while (true) {
         for (i in shuffle(images)) {
+            img = new Image();
+            img.src = "../images/" + images[i];
+
             chat.fadeOut(function() {
                 document.getElementById("tresgroschatchat").style.backgroundImage = "url(../images/" + images[i] + ")"
                 document.getElementById("groschatchat").style.backgroundImage = "url(../images/" + images[i] + ")"
 
-                img = new Image();
                 img.onload = function() { chat.fadeIn()}
-                img.src = "../images/" + images[i];
+                if (img.complete) img.onload();
             })
 
             await sleep(4000);
