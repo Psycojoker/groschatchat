@@ -27,7 +27,7 @@ async function main() {
         for (i in shuffle(images)) {
             $(".chat").fadeOut(function() {
                 document.getElementById("tresgroschatchat").style.backgroundImage = "url(../images/" + images[i] + ")"
-                    document.getElementById("groschatchat").style.backgroundImage = "url(../images/" + images[i] + ")"
+                document.getElementById("groschatchat").style.backgroundImage = "url(../images/" + images[i] + ")"
             }).fadeIn()
 
             await sleep(4000);
