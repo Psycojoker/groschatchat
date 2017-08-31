@@ -29,12 +29,11 @@ async function main() {
 
     while (true) {
         for (i in shuffle(images)) {
-            var src = "url(images/" + images[i] + ")"
+            var url = "images/" + images[i];
+            var src = "url(" + url + ")";
 
             await curtain.fadeIn(400, function() {
-                $("<img/>", {
-                    src: src
-                }).ready(function() {
+                $("<img/>").load(url, function() {
                     tcc.css('background-image', src);
                     gcc.css('background-image', src);
 
