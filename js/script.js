@@ -23,21 +23,28 @@ async function main() {
         return new Promise(r => setTimeout(r, ms));
     }
 
-    var chat = $(".chat");
+	var curtain = $("#curtain");
+	var tcc = $("#tresgroschatchat");
+	var gcc = $("#groschatchat");
 
     while (true) {
         for (i in shuffle(images)) {
-            img = new Image();
-            img.src = "../images/" + images[i];
+            var src = "url(images/" + images[i] + ")"
 
-            img.onload = function() {
-                chat.fadeOut(function() {
-                    document.getElementById("tresgroschatchat").style.backgroundImage = "url(../images/" + images[i] + ")"
-                    document.getElementById("groschatchat").style.backgroundImage = "url(../images/" + images[i] + ")"
-                }).fadeIn()
-            }
+            await curtain.animate({
+                opacity: '+=1'
+            }, 400, function() {
+                $("<img/>", {
+                    src: src
+                }).ready(function() {
+                    tcc.css('background-image', src);
+                    gcc.css('background-image', src);
 
-            if (img.complete) img.onload();
+                    curtain.animate({
+                        opacity: '-=1'
+                    }, 400);
+                });
+            });
 
             await sleep(4000);
         }
