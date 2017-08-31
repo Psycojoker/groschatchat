@@ -1,27 +1,45 @@
-html, body, #tresgroschatchat, #groschatchat {
+html {
+    overflow: hidden;
+}
+
+html, body, #curtain, #tresgroschatchat, #groschatchat {
     height: 100%;
     width: 100%;
     margin: 0;
     padding: 0;
+}
+#curtain {
+    z-index: 5;
+}
+#groschatchat {
+    z-index: 4;
+}
+#tresgroschatchat {
+    z-index: 3;
+}
+#curtain, #tresgroschatchat, #groschatchat {
+    position: absolute;
 }
 
 body {
     background-color: black;
 }
 
+#curtain {
+	background-size: cover;
+	background-color: black;
+}
+
 #tresgroschatchat {
     background-size: cover;
     background-position: center center;
-    display: none;
     filter: blur(10px);
 }
 
 #groschatchat {
-    position: absolute;
     top: 0;
     left: 0;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;
-    display: none;
 }

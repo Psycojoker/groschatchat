@@ -2,7 +2,7 @@ He is fat, he is fuflly, he is beautiful and I love him.
 
 https://groschatchat.com
 
-Usage:
+Usage (requires `graphicsmagick`):
 
     bash generate.sh
 
