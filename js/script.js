@@ -31,18 +31,14 @@ async function main() {
         for (i in shuffle(images)) {
             var src = "url(images/" + images[i] + ")"
 
-            await curtain.animate({
-                opacity: '+=1'
-            }, 400, function() {
+            await curtain.fadeIn(400, function() {
                 $("<img/>", {
                     src: src
                 }).ready(function() {
                     tcc.css('background-image', src);
                     gcc.css('background-image', src);
 
-                    curtain.animate({
-                        opacity: '-=1'
-                    }, 400);
+                    curtain.fadeOut(600);
                 });
             });
 
