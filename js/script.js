@@ -1,49 +1,75 @@
-// stolen here https://stackoverflow.com/a/2450976
+/* Array shuffling function.
+ * Taken from https://stackoverflow.com/a/2450976 */
+
 function shuffle(array) {
-  var currentIndex = array.length, temporaryValue, randomIndex;
+	var currentIndex = array.length, temporaryValue, randomIndex;
 
-  // While there remain elements to shuffle...
-  while (0 !== currentIndex) {
+	while (0 !== currentIndex) {
+		randomIndex = Math.floor(Math.random() * currentIndex);
+		currentIndex -= 1;
 
-    // Pick a remaining element...
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex -= 1;
+		temporaryValue = array[currentIndex];
+		array[currentIndex] = array[randomIndex];
+		array[randomIndex] = temporaryValue;
+	}
 
-    // And swap it with the current element.
-    temporaryValue = array[currentIndex];
-    array[currentIndex] = array[randomIndex];
-    array[randomIndex] = temporaryValue;
-  }
-
-  return array;
+	return array;
 }
 
-async function main() {
-    function sleep(ms = 0) {
-        return new Promise(r => setTimeout(r, ms));
-    }
-
+$(function() {
+	var loaded = false, finished = true;
 	var curtain = $("#curtain");
+	var i = 0;
 	var tcc = $("#tresgroschatchat");
 	var gcc = $("#groschatchat");
 
-    while (true) {
-        for (i in shuffle(images)) {
-            var url = "images/" + images[i];
-            var src = "url(" + url + ")";
+	$(document).on("gcc:show", function() {
+		loaded = false;
+		finished = false;
 
-            await curtain.fadeIn(400, function() {
-                $("<img/>").load(url, function() {
-                    tcc.css('background-image', src);
-                    gcc.css('background-image', src);
+		/* Set the current background image. */
+		var url = "images/" + images[i];
+		var src = "url(" + url + ")";
+		tcc.css('background-image', src);
+		gcc.css('background-image', src);
 
-                    curtain.fadeOut(600);
-                });
-            });
+		/* Start loading the next image. */
+		i = (i + 1) % images.length;
+		$("<img/>").load(url, function() {
+			$(document).trigger("gcc:loaded");
+		});
 
-            await sleep(4000);
-        }
-    }
-}
+		/* Fade out, wait for at least 4 seconds. */
+		curtain.fadeOut(600, function() {
+			setTimeout(function() {
+				$(document).trigger("gcc:finished");
+			}, 4000);
+		});
+	});
 
-main()
+	$(document).on("gcc:loaded", function() {
+		loaded = true;
+		if (finished)
+			$(document).trigger("gcc:hide");
+	});
+
+	$(document).on("gcc:finished", function() {
+		finished = true;
+		if (loaded)
+			$(document).trigger("gcc:hide");
+	});
+
+	$(document).on("gcc:hide", function() {
+		curtain.fadeIn(400, function() {
+			$(document).trigger("gcc:show");
+		});
+	});
+
+	/* Initialize. */
+
+	images = shuffle(images);
+	var first_url = "images/" + images[0];
+	$("<img/>").load(first_url, function() {
+		$(document).trigger("gcc:show");
+	});
+});
